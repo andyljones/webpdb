@@ -4,7 +4,7 @@ $(function() {
    * if we are in console mode, show the console.
    */
   if (CONSOLE_MODE && EVALEX) {
-    openShell(null, $('div.console div.inner').empty(), 0);
+    openShell(null, $('div.console div.inner').empty(), -1);
   }
 
   $('div.traceback div.frame').each(function() {

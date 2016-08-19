@@ -29,7 +29,7 @@ def debug():
 @app.route('/command')
 def command():
     frame_id = request.args.get('frm', type=int)
-    if frame_id > 0:
+    if frame_id >= 0:
         frame = [f for f in TRACEBACK.frames if f.id == frame_id][0]
     else:
         frame = CONSOLE_FRAME
