@@ -14,5 +14,6 @@ Currently Python 3 only.
 
 ###TODO
  * Add password authentication
+ * Add Kerberos authentication?
  * Replace the underlying REPL with something that calls out to ipython
  * Add syntax highlighting of some sort
