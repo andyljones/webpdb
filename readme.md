@@ -5,3 +5,5 @@ This is a remote debugger for Python with a web interface. It is based on the fa
 To use it, call `webdebugger.post_mortem(host, port)` from inside an `except` block. It'll launch a web server at the given host and port, and provide you with a console that you can use to inspect the error.
 
 See [example.py](example.py) for an example.
+
+Currently Python 3 only.
