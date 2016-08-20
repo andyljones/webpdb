@@ -15,7 +15,7 @@ from types import CodeType
 from werkzeug.utils import escape
 from werkzeug.local import Local
 
-from repr import debug_repr, dump, helper
+from .repr import debug_repr, dump, helper
 
 
 _local = Local()

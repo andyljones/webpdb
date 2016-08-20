@@ -18,7 +18,7 @@ from werkzeug._compat import PY2, text_type, to_native, to_unicode
 from werkzeug.filesystem import get_filesystem_encoding
 from jinja2 import Template
 
-from console import Console
+from .console import Console
 
 _coding_re = re.compile(br'coding[:=]\s*([-\w.]+)')
 _line_re = re.compile(br'^(.*?)$(?m)')
