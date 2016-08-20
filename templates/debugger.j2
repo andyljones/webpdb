@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>{{title}} // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="/resources/style.css" type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon" href="/resources/console.png">
+    <script src="/resources/jquery.js"></script>
+    <script src="/resources/debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = {{traceback_id}}
+    </script>
+  </head>
+  <body>
+    <div class="debugger">
+    <h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+    <div class={{"traceback" if frames else "traceback noframe-traceback"}}>
+      <ul>
+        {% for frame in frames %}
+          <li>
+          <div class="frame" id="frame-{{frame.id}}">
+            <h4>File <cite class="filename">"{{frame.filename}}"</cite>,
+                line <em class="line">{{frame.lineno}}</em>,
+                in <code class="function">{{frame.function_name}}</code></h4>
+            <div class="source">
+              {% for line in frame.lines %}
+                <pre class="line {{line.position}}"><span class="ws">{{line.prefix}}</span>{{line.text}}</pre>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </ul>
+        <blockquote>{{exception}}</blockquote>
+    </div>
+    <div class="plain">
+        <p>
+          This is the copy/paste-friendly version of the traceback.
+        </p>
+        <textarea cols="50" rows="10" name="code" readonly>
+Traceback (most recent call last): {% for frame in frames %}
+  File {{frame.filename}}, line {{frame.lineno}}, in {{frame.function_name}}
+    {{frame.current_line}}{% endfor %}
+{{exception}}</textarea>
+    </div>
+    <div class="explanation">
+      <p>
+        The debugger caught an exception in your application.  You can now
+        look at the traceback which led to the error.
+      </p>
+
+      <p>
+        To switch between the interactive traceback and the plaintext
+        one, you can click on the "Traceback" headline.  From the text
+        traceback you can also create a paste of it.
+        For code execution mouse-over the frame you want to debug and
+        click on the console icon on the right side.
+      </p>
+
+      <p>
+        You can execute arbitrary Python code in the stack frames and
+        there are some extra helpers available for introspection:
+        <ul>
+          <li><code>dump()</code> shows all variables in the frame
+          <li><code>dump(obj)</code> dumps all that\'s known about the object
+        </ul>
+      </p>
+    </div>
+</div>
+</body>
+</html>

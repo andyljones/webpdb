@@ -1,12 +1,5 @@
 $(function() {
 
-  /**
-   * if we are in console mode, show the console.
-   */
-  if (CONSOLE_MODE && EVALEX) {
-    openShell(null, $('div.console div.inner').empty(), -1);
-  }
-
   $('div.traceback div.frame').each(function() {
     var
       target = $('pre', this),
@@ -20,7 +13,7 @@ $(function() {
     /**
      * Add an interactive console to the frames
      */
-    if (EVALEX && target.is('.current')) {
+    if (target.is('.current')) {
       $('<img src="/resources/console.png">')
         .attr('title', 'Open an interactive python shell in this frame')
         .click(function() {
@@ -48,17 +41,14 @@ $(function() {
     .removeClass('nojavascript')
     .html('<p>To switch between the interactive traceback and the plaintext ' +
           'one, you can click on the "Traceback" headline.  From the text ' +
-          'traceback you can also create a paste of it. ' + (!EVALEX ? '' :
+          'traceback you can also create a paste of it. ' +
           'For code execution mouse-over the frame you want to debug and ' +
           'click on the console icon on the right side.' +
           '<p>You can execute arbitrary Python code in the stack frames and ' +
           'there are some extra helpers available for introspection:' +
           '<ul><li><code>dump()</code> shows all variables in the frame' +
-          '<li><code>dump(obj)</code> dumps all that\'s known about the object</ul>'));
+          '<li><code>dump(obj)</code> dumps all that\'s known about the object</ul>');
 
-  /**
-   * Add the pastebin feature
-   */
 
   // if we have javascript we submit by ajax anyways, so no need for the
   // not scaling textarea.
@@ -83,7 +73,7 @@ function openShell(consoleNode, target, frameID) {
   var form = $('<form>&gt;&gt;&gt; </form>')
     .submit(function() {
       var cmd = command.val();
-      $.get('/command', {cmd: cmd, frm: frameID, s: SECRET}, function(data) {
+      $.get('/command', {cmd: cmd, frm: frameID}, function(data) {
         var tmp = $('<div>').html(data);
         $('span.extended', tmp).each(function() {
           var hidden = $(this).wrap('<span>').hide();
