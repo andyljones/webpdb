@@ -13,7 +13,6 @@ from .tbtools import Traceback
 app = Flask(__name__, static_folder='resources')
 traceback = None
 
-
 @app.route('/debugger')
 def debug():
     return Response(
@@ -31,18 +30,7 @@ def command():
     return frame.console.eval(command)
     
     
-def post_mortem():
+def post_mortem(host='localhost', port=5000):
     global traceback
     traceback = Traceback(*sys.exc_info())
-    app.run()
-    
-    
-if __name__ == '__main__':
-    def f():
-        if True:
-            raise ValueError('Problem!')
-    
-    try:
-        f()
-    except:
-        post_mortem()
+    app.run(host, port)

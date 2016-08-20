@@ -11,6 +11,7 @@
 import sys
 import code
 from types import CodeType
+from traceback import format_exc
 
 from werkzeug.utils import escape
 from werkzeug.local import Local
@@ -183,14 +184,10 @@ class _InteractiveConsole(code.InteractiveInterpreter):
             self.showtraceback()
 
     def showtraceback(self):
-        from werkzeug.debug.tbtools import get_current_traceback
-        tb = get_current_traceback(skip=1)
-        sys.stdout._write(tb.render_summary())
+        sys.stdout._write(format_exc())
 
     def showsyntaxerror(self, filename=None):
-        from werkzeug.debug.tbtools import get_current_traceback
-        tb = get_current_traceback(skip=4)
-        sys.stdout._write(tb.render_summary())
+        sys.stdout._write(format_exc())
 
     def write(self, data):
         sys.stdout.write(data)

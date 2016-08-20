@@ -12,6 +12,7 @@ import os
 import inspect
 import traceback
 import codecs
+from pkg_resources import resource_string
 
 from werkzeug.utils import cached_property
 from werkzeug._compat import PY2, text_type, to_native, to_unicode
@@ -59,8 +60,8 @@ class Traceback(object):
                    'lines': frame.line_context(),
                    'current_line': frame.current_line.strip(),
                    } for frame in self.frames]
-        
-        template = Template(open('templates/debugger.j2').read())
+
+        template = Template(resource_string('webdebugger.templates', 'debugger.j2').decode('utf-8'))
         return template.render(**{
             'console':          'false',
             'title':            self.exception,
