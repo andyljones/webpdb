@@ -85,16 +85,16 @@ a.open { background-image: url(less.png); }
 
 pre.console div.traceback,
 pre.console div.box { margin: 5px 10px; white-space: normal;
-                      border: 1px solid #11557C; padding: 10px;
+                      border: 1px solid #D3E7E9; padding: 10px;
                       font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva',
                       'Verdana', sans-serif;  }
 pre.console div.box h3,
 pre.console div.traceback h3 { margin: -10px -10px 10px -10px; padding: 5px;
-                               background: #11557C; color: white; }
+                               background: #5E8D91; color: white; }
 
 pre.console div.traceback pre:hover { cursor: default; background: #E8EFF0; }
 
-pre.console div.box pre.repr { padding: 0; margin: 0; background-color: white; border: none; }
+pre.console div.box pre.repr { padding: 0; margin: 0; border: none; background: #C1D5D7 }
 pre.console div.box table { margin-top: 6px; }
 pre.console div.box pre { border: none; }
 pre.console div.box pre.help { background-color: white; }
