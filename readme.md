@@ -11,3 +11,8 @@ which displays the most recent error, and lets you create a console anywhere on 
 See [example.py](example.py) for an example.
 
 Currently Python 3 only.
+
+###TODO
+ * Add password authentication
+ * Replace the underlying REPL with something that calls out to ipython
+ * Add syntax highlighting of some sort
