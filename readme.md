@@ -2,15 +2,32 @@
 
 This is a remote debugger for Python with a web interface. It is based on the fantastic [Werkzeug debugger](https://github.com/pallets/werkzeug).
 
-To use it, call `webpdb.pm(host, port)` from inside an `except` block. It'll launch a web server at the given host and port, which you can access at `host:port/debugger`. You should get a webpage like this:
+To use it, call `webpdb.pm(host, port)` from inside an `except` block. It'll launch a web server at the given host and port, which you can access at `host:port`. You should get a webpage like this:
 
 ![Example debug screen](readme_example.png)
 
 which displays the most recent error, and lets you create a console anywhere on that error's stack.
 
-See [example.py](example.py) for an example of how to use it.
+### Example
+
+```python
+def f():
+  raise ValueError()
+
+try:
+    f()
+except:
+    webpdb.pm()
+```
+
+Now open your browser and navigate to [localhost:5001](http://localhost:5001). Click on any of the stack frames to open a primitive console.
+
+### Installation
+
+```pip install webpdb```
 
 ### TODO
   * Add password/token authentication like Werkzeug has.
   * Replace the underlying REPL with something that calls out to ipython
   * Add syntax highlighting of some sort
+  * Add a 'kill this process' button.

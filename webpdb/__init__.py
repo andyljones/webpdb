@@ -25,7 +25,13 @@ def command():
     return frame.console.eval(command)
     
     
-def pm(host='localhost', port=5000):
+def pm(host='localhost', port=5001):
+    """Launches a post-mortem debugger for the most recent exception at the given host and port
+    
+    Args:
+        host (str): the host to launch the debugger on.
+        port (int): the port to launch the debugger on.
+    """
     global traceback
     traceback = Traceback(*sys.exc_info())
     app.run(host, port)
