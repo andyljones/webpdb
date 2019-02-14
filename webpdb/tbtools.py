@@ -61,7 +61,7 @@ class Traceback(object):
                    'current_line': frame.current_line.strip(),
                    } for frame in self.frames]
 
-        template = Template(resource_string(__package__ + '/resources', 'debugger.j2').decode())
+        template = Template(resource_string(__package__ + '.resources', 'debugger.j2').decode())
         return template.render(**{
             'console':          'false',
             'title':            self.exception,
