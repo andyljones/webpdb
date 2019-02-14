@@ -10,10 +10,12 @@ from flask import Flask, request, Response
 
 from .tbtools import Traceback
 
+__all__ = ('pm',)
+
 app = Flask(__name__, static_folder='resources')
 traceback = None
 
-@app.route('/debugger')
+@app.route('/')
 def debug():
     return Response(
                     response=traceback.render(),
@@ -30,7 +32,7 @@ def command():
     return frame.console.eval(command)
     
     
-def post_mortem(host='localhost', port=5000):
+def pm(host='localhost', port=5000):
     global traceback
     traceback = Traceback(*sys.exc_info())
     app.run(host, port)
