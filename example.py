@@ -1,6 +1,5 @@
-from webdebugger import post_mortem
 
 try: 
     raise ValueError()
 except:
-    post_mortem()
+    import webpdb; webpdb.pm()

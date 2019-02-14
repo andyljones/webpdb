@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 18 07:47:41 2016
-
-@author: andyjones
-"""
 import sys
 from flask import Flask, request, Response
 
